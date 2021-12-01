@@ -21,14 +21,23 @@ export default function App() {
       quantity,
       price,
     };
-    const response = await api.post("register", dados).then((response) => {
-      Alert.alert("", "Compra Adicionada com Sucesso", [
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
-      setBrand("");
-      setQuantity("");
-      setPrice("");
-    });
+    const response = await api
+      .post("register", dados)
+      .then((response) => {
+        Alert.alert("", "Compra Adicionada com Sucesso", [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
+        setBrand("");
+        setQuantity("");
+        setPrice("");
+      })
+      .catch((error) => {
+        Alert.alert(
+          "Erro ao Adicionar Compra",
+          "Confira se os campos então preenchidos corretamente",
+          [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+        );
+      });
   }
 
   return (
@@ -40,7 +49,8 @@ export default function App() {
       <Text style={styles.texto}>Marca: </Text>
       <TextInput
         style={styles.input}
-        placeholder="Marca X"
+        placeholder="Ex: Marca X"
+        placeholderTextColor="#fff"
         onChangeText={(brand) => setBrand(brand)}
         defaultValue={brand}
         keyboardType="default"
@@ -49,7 +59,8 @@ export default function App() {
       <Text style={styles.texto}>Quantidade: </Text>
       <TextInput
         style={styles.input}
-        placeholder="20"
+        placeholder="Ex: 20"
+        placeholderTextColor="#fff"
         onChangeText={(quantity) => setQuantity(quantity)}
         defaultValue={quantity}
         keyboardType="numeric"
@@ -58,7 +69,8 @@ export default function App() {
       <Text style={styles.texto}>Preço: </Text>
       <TextInput
         style={styles.input}
-        placeholder="100"
+        placeholder="Ex: 100"
+        placeholderTextColor="#fff"
         onChangeText={(price) => setPrice(price)}
         defaultValue={price}
         keyboardType="numeric"
