@@ -3,15 +3,17 @@ import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import Header from "./components/header";
 import Body from "./components/body";
+import Table from "./components/table";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <ScrollView>
         <StatusBar style="auto" />
-        <Header />
-        <Body />
+        {/* <Header />
+        <Body /> */}
       </ScrollView>
+      <Table />
     </View>
   );
 }
